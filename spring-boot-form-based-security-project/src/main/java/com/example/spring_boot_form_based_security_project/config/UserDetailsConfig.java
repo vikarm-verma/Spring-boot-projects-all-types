@@ -14,14 +14,19 @@ public class UserDetailsConfig {
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager(); // In-memory user store
 
-        // Create a user: username = admin, password = admin123 (BCrypt encrypted), role = ADMIN
+        // Create a user: username = admin, password = admin123 (BCrypt encrypted), role
+        // = ADMIN
         manager.createUser(
-            User.withUsername("admin")
-                .password(encoder.encode("admin123")) // Encrypt the password
-                .roles("ADMIN") // Assign role
-                .build()
-        );
+                User.withUsername("admin")
+                        .password(encoder.encode("admin123")) // Encrypt the password
+                        .roles("ADMIN") // Assign role
+                        .build());
 
+        manager.createUser(
+                User.withUsername("user")
+                        .password(encoder.encode("user123"))
+                        .roles("USER") // another user
+                        .build());
         return manager; // Return the in-memory user manager
     }
 }

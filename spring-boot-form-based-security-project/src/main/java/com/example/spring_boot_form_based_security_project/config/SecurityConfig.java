@@ -15,7 +15,9 @@ public class SecurityConfig {
         http
             // Set authorization rules
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/error", "/css/**").permitAll() // Publicly accessible URLs
+                .requestMatchers("/login").permitAll() // Publicly accessible URLs
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated() // All other URLs require authentication
             )
             // Enable form login

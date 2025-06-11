@@ -16,8 +16,18 @@ public class HomeController {
         return "dashboard"; // Return dashboard.html
     }
 
-     @GetMapping("/logout") // Maps /dashboard URL to dashboard view
+    @GetMapping("/logout") 
     public String logoutPage() {
-        return "logout"; // Return dashboard.html
+        return "logout"; 
+    }
+
+    @GetMapping("/admin") 
+    public String adminPage() {
+        return "adminpage"; 
+    }
+
+    @GetMapping("/user")
+    public String userPage() {
+        return "userpage"; 
     }
 }
